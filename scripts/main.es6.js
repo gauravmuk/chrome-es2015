@@ -97,9 +97,7 @@ class StickyNote extends HTMLElement {
 
   // Fires when an instance of the element is created.
   createdCallback() {
-    StickyNote.CLASSES.forEach(function(klass) {
-      this.classList.add(klass);
-    }.bind(this));
+    this.classList.add(...StickyNote.CLASSES);
     this.innerHTML = StickyNote.TEMPLATE;
     this.messageElement = this.querySelector('.message');
     this.dateElement = this.querySelector('.date');
@@ -117,8 +115,9 @@ class StickyNote extends HTMLElement {
       } else {
         date = new Date();
       }
-      let month = StickyNote.MONTHS[date.getMonth()];
-      this.dateElement.textContent = 'Created on ' + month + ' ' + date.getDate();
+      let dateFormatterOptions = {day: 'numeric', month: 'short'};
+      let shortDate = new Intl.DateTimeFormat("en-US", dateFormatterOptions).format(date);
+      this.dateElement.textContent = `Created on ${shortDate}`;
     }
   }
 
@@ -138,11 +137,11 @@ class StickyNote extends HTMLElement {
 
 // Initial content of the element.
 StickyNote.TEMPLATE =
-  '<div class="message"></div>' +
-  '<div class="date"></div>' +
-  '<button class="delete mdl-button mdl-js-button mdl-js-ripple-effect">' +
-    'Delete' +
-  '</button>';
+  `<div class="message"></div>
+  <div class="date"></div>
+  <button class="delete mdl-button mdl-js-button mdl-js-ripple-effect">
+    Delete
+  </button>`;
 
 // StickyNote elements top level style classes.
 StickyNote.CLASSES = ['mdl-cell--4-col-desktop', 'mdl-card__supporting-text', 'mdl-cell--12-col',
