@@ -2,3 +2,4 @@ node_modules
 .idea
 *-compiled.js
 *-compiled.js.map
+npm-debug.log

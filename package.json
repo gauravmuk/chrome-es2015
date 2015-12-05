@@ -2,14 +2,14 @@
   "name": "chrome-es2015-codelab",
   "description": "ES2015 Codelab",
   "license": "Apache-2.0",
-  "author": "Google",
-  "repository": "googlecodelabs/chrome-es2015",
+  "author": "Gaurav Nanda",
+  "repository": "gauravmuk/chrome-es2015",
   "devDependencies": {
     "babel-cli": "^6.3.13",
     "babel-preset-es2015": "^6.3.13",
     "serve": "^1.4.0"
   },
   "scripts": {
-    "start": "babel --presets es2015 scripts/main.es6.js -o scripts/main.es5.js -s true -w & serve --port 52587"
+    "start": "serve --port 52587"
   }
 }
